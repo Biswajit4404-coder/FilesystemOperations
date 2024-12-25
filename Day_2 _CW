@@ -1,0 +1,41 @@
+import os
+import shutil
+
+# 1. Create a new directory
+new_dir = "MyNewDirectory"
+if not os.path.exists(new_dir):
+    os.mkdir(new_dir)
+    print(f"Directory '{new_dir}' created successfully.")
+else:
+    print(f"Directory '{new_dir}' already exists.")
+
+# 2. List all files and directories in the current working directory
+print("\nCurrent Working Directory Contents:")
+for item in os.listdir("."):
+    print(item)
+
+# 3. Create a new text file within the new directory and write some content to it
+file_path = os.path.join(new_dir, "example.txt")
+with open(file_path, "w") as file:
+    file.write("This is some sample content for the example text file.")
+print(f"\nFile '{file_path}' created and content written.")
+
+# 4. Read the content of the newly created text file
+print("\nReading content from the file:")
+with open(file_path, "r") as file:
+    content = file.read()
+    print(content)
+
+# 5. Rename the text file
+renamed_file_path = os.path.join(new_dir, "renamed_example.txt")
+os.rename(file_path, renamed_file_path)
+print(f"\nFile renamed to '{renamed_file_path}'.")
+
+# 6. List all files and directories in the new directory after renaming
+print("\nContents of the new directory after renaming:")
+for item in os.listdir(new_dir):
+    print(item)
+
+# 7. Delete the new directory and its contents
+shutil.rmtree(new_dir)
+print(f"\nDirectory '{new_dir}' and its contents have been deleted.")
